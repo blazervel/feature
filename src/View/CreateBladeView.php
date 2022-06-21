@@ -1,6 +1,6 @@
 <?php
 
-namespace Blazervel\Blazervel\View;
+namespace Blazervel\Feature\View;
 
 use Illuminate\View\Component;
 

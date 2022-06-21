@@ -1,8 +1,8 @@
 <?php
 
-namespace Blazervel\Blazervel\Operations;
+namespace Blazervel\Feature\Operations;
 
-use Blazervel\Blazervel\Action;
+use Blazervel\Feature\Action;
 
 class Edit extends Action
 {

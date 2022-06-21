@@ -1,18 +1,18 @@
 <?php
 
-namespace Blazervel\Blazervel\Providers;
+namespace Blazervel\Feature\Providers;
 
-use Blazervel\Blazervel\Commands\MakeCommand;
-use Blazervel\Blazervel\View\TagCompiler;
+use Blazervel\Feature\Commands\MakeCommand;
+use Blazervel\Feature\View\TagCompiler;
 
 use Blazervel\Lang\Lang;
 use Tightenco\Ziggy\BladeRouteGenerator;
-use Blazervel\Blazervel\Support\Feature;
+use Blazervel\Feature\Support\Feature;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\{ Config, Blade };
 use Illuminate\Support\ServiceProvider;
 
-class BlazervelServiceProvider extends ServiceProvider 
+class BlazervelFeatureServiceProvider extends ServiceProvider 
 {
   private string $pathTo = __DIR__ . '/../..';
 
@@ -76,7 +76,7 @@ class BlazervelServiceProvider extends ServiceProvider
   private function loadComponents()
   {
     Blade::componentNamespace(
-      'Blazervel\\Blazervel\\View\\Components', 
+      'Blazervel\\Feature\\View\\Components', 
       'blazervel'
     );
 

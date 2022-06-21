@@ -1,6 +1,6 @@
 <?php
 
-namespace Blazervel\Blazervel\Casts\Enums;
+namespace Blazervel\Feature\Casts\Enums;
 
 trait WithOptions {
 

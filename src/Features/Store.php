@@ -1,10 +1,10 @@
 <?php
 
-namespace Blazervel\Blazervel\Operations;
+namespace Blazervel\Feature\Operations;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Blazervel\Blazervel\Action;
+use Blazervel\Feature\Action;
 
 class Store extends Action
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Blazervel\Blazervel\View;
+namespace Blazervel\Feature\View;
 
-use Blazervel\Blazervel\Feature;
+use Blazervel\Feature\Support\Feature;
 use InvalidArgumentException;
 use Illuminate\View\Compilers\ComponentTagCompiler;
 

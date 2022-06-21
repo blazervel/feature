@@ -1,6 +1,6 @@
 <?php
 
-namespace Blazervel\Blazervel\Commands;
+namespace Blazervel\Feature\Commands;
 
 use Illuminate\Console\Command;
 
