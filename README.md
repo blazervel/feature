@@ -1,5 +1,5 @@
 🚨 ***PACKAGE IS STILL IN EARLY DEVELOPMENT (PRE-V1)*** 🚨
 
-# Blazervel - Zero-configuration Laravel Development
+# Feature Folder support (for [Blazervel](https://blazervel.com))
 
 Documentation coming soon...
