@@ -1,6 +1,6 @@
 {
-  "name": "joshuaanderton/blazervel",
-  "description": "Trailblazer method utilized for Laravel.",
+  "name": "blazervel/blazervel",
+  "description": "Zero-configuration Laravel development workflow",
   "license": "MIT",
   "authors": [
       {
@@ -9,8 +9,12 @@
       }
   ],
   "require": {
-      "php": "^8.1",
-      "illuminate/support": "^8.67|^9.0"
+      "php": "^8.0",
+      "barryvdh/laravel-debugbar": "^3.6",
+      "illuminate/support": "^8.67|^9.0",
+      "lorisleiva/laravel-actions": "^2.4",
+      "phpstan/phpstan": "^1.7",
+      "tightenco/ziggy": "^1.0"
   },
   "require-dev": {
       "phpunit/phpunit": "^9.3"
