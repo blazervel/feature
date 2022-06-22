@@ -49,6 +49,13 @@ class BlazervelFeatureServiceProvider extends ServiceProvider
       endforeach;
 
     });
+
+    $this->app->booting(fn ($app) => (
+      AliasLoader::getInstance()->alias(
+        'Blazervel\\Feature', 
+        'Blazervel\\Feature\\Feature'
+      )
+    ));
   }
 
   private function loadRoutes() 
