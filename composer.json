@@ -10,7 +10,6 @@
   ],
   "require": {
       "php": "^8.0",
-      "barryvdh/laravel-debugbar": "^3.6",
       "illuminate/support": "^8.67|^9.0",
       "lorisleiva/laravel-actions": "^2.4",
       "phpstan/phpstan": "^1.7"

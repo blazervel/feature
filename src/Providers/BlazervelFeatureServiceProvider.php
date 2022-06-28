@@ -5,7 +5,7 @@ namespace Blazervel\Feature\Providers;
 use Blazervel\Feature\Commands\MakeCommand;
 use Blazervel\Feature\Support\Feature;
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\{ File, Config };
 use Illuminate\Support\ServiceProvider;
 
 class BlazervelFeatureServiceProvider extends ServiceProvider 
@@ -14,6 +14,7 @@ class BlazervelFeatureServiceProvider extends ServiceProvider
 
 	public function register()
 	{
+    $this->ensureFeaturesDirectoryExists();
     $this->registerAnonymousClassAliases();
 	}
 
@@ -28,8 +29,15 @@ class BlazervelFeatureServiceProvider extends ServiceProvider
       ]);
     endif;
   }
+  
+  private function ensureFeaturesDirectoryExists()
+  {
+    File::ensureDirectoryExists(
+      app_path('Features')
+    );
+  }
 
-  public function registerAnonymousClassAliases(): void
+  private function registerAnonymousClassAliases(): void
   {
     if (!Config::get('blazervel.anonymous_classes', true)) :
       return;
