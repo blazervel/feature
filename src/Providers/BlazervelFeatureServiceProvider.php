@@ -2,6 +2,7 @@
 
 namespace Blazervel\Feature\Providers;
 
+use Lorisleiva\Actions\Facades\Actions;
 use Blazervel\Feature\Commands\MakeCommand;
 use Blazervel\Feature\Support\Feature;
 use Illuminate\Foundation\AliasLoader;
@@ -14,14 +15,16 @@ class BlazervelFeatureServiceProvider extends ServiceProvider
 
 	public function register()
 	{
-    $this->ensureFeaturesDirectoryExists();
+    $this->ensureDirectoryExists();
     $this->registerAnonymousClassAliases();
 	}
 
   public function boot()
   {
-    $this->loadRoutes();
+    $this->loadDefaultRoutes();
+    $this->loadFeatureRoutes();
     $this->loadTranslations();
+    $this->loadConfig();
 
     if ($this->app->runningInConsole()) :
       $this->commands([
@@ -30,11 +33,25 @@ class BlazervelFeatureServiceProvider extends ServiceProvider
     endif;
   }
   
-  private function ensureFeaturesDirectoryExists()
+  private function ensureDirectoryExists()
   {
     File::ensureDirectoryExists(
-      app_path('Features')
+      Config::get('blazervel.features_dir') ?: app_path('Features')
     );
+  }
+
+  private function loadFeatureRoutes()
+  {
+    Actions::registerRoutes(
+      Feature::directories()
+    );
+  }
+
+  private function loadConfig()
+  {
+    $this->publishes([
+      "{$this->pathTo}/config/blazervel.php" => config_path('blazervel.php'),
+    ], 'blazervel');
   }
 
   private function registerAnonymousClassAliases(): void
@@ -57,16 +74,9 @@ class BlazervelFeatureServiceProvider extends ServiceProvider
       endforeach;
 
     });
-
-    $this->app->booting(fn ($app) => (
-      AliasLoader::getInstance()->alias(
-        'Blazervel\\Feature', 
-        'Blazervel\\Feature\\Feature'
-      )
-    ));
   }
 
-  private function loadRoutes() 
+  private function loadDefaultRoutes() 
   {
     $this->loadRoutesFrom(
       "{$this->pathTo}/routes/routes.php"

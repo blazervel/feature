@@ -2,16 +2,26 @@
 
 namespace Blazervel\Feature\Support;
 
-use Illuminate\Support\{ Str, Collection, Facades\View };
+use Symfony\Component\Finder\Finder;
+use Illuminate\Support\{ Str, Collection };
+use Illuminate\Support\Facades\{ Config, View };
 use Illuminate\Filesystem\Filesystem;
 
 class Feature
 {
-  public static function anonymousClasses(): array
+  static function directories(): array
+  {
+    $directory = Config::get('blazervel.features_dir') ?: app_path('Features');
+    $directories = Finder::create()->in($directory)->directories()->sortByName();
+    
+    return (new Collection($directories))->map(fn ($dir) => Str::remove(base_path() . '/', $dir->getPathname()))->all();
+  }
+
+  static function anonymousClasses(): array
   {
     $actions = [];
     $files = (new Filesystem)->allFiles(
-      app_path('Features')
+      Config::get('blazervel.features_dir') ?: app_path('Features')
     );
 
     foreach($files as $file) :
@@ -39,7 +49,7 @@ class Feature
     return $actions;
   }
 
-  public static function componentLookup(string $componentNameOrPath): string|null
+  static function componentLookup(string $componentNameOrPath): string|null
   {
     $featureComponent = null;
 
@@ -73,7 +83,7 @@ class Feature
     return null;
   }
 
-  public static function viewLookup(string $componentNameOrPath): string|null
+  static function viewLookup(string $componentNameOrPath): string|null
   {
     $featureView = null;
 
