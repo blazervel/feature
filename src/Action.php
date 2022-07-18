@@ -2,8 +2,8 @@
 
 namespace Blazervel\Feature;
 
-use Lorisleiva\Actions\Action as BaseAction;
+use Lorisleiva\Actions\Concerns\AsAction;
 
-class Action extends BaseAction {
-  //
+class Action {
+  use AsAction;
 }
